@@ -14,13 +14,8 @@
 	<!-- <parent> <groupId>org.wso2.carbon</groupId> <artifactId>proxy-admin</artifactId> 
 		<version>4.2.0</version> </parent> -->
 
-	<!--	
-	<parent>
-		<groupId>org.wso2.carbon</groupId>
-		<artifactId>carbon-components</artifactId>
-		<version>4.2.0</version>
-	</parent>
-	-->
+	<!-- <parent> <groupId>org.wso2.carbon</groupId> <artifactId>carbon-components</artifactId> 
+		<version>4.2.0</version> </parent> -->
 
 	<groupId>com.ulrica.wso2</groupId>
 	<modelVersion>4.0.0</modelVersion>
@@ -35,7 +30,43 @@
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
 		<wso2.carbon.version>4.4.8</wso2.carbon.version>
 	</properties>
-
+	<!--============== 配置私服START =============== -->
+	<!-- 私服 -->
+	<repositories>
+		<repository>
+			<id>wso2-nexus</id>
+			<name>WSO2 internal Repository</name>
+			<url>http://maven.wso2.org/nexus/content/groups/wso2-public/</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>ignore</checksumPolicy>
+			</releases>
+		</repository>
+		<repository>
+			<id>DistNexus</id>
+			<url>http://58.246.138.178:22280/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+	<!-- 插件仓库 -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>DistNexus</id>
+			<url>http://58.246.138.178:22280/nexus/content/groups/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
+	<!-- 项目发布 -->
+	<distributionManagement>
+		<repository>
+			<id>DistNexusRelease</id>
+			<url>http://58.246.138.178:22280/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>DistNexusSnapshot</id>
+			<url>http://58.246.138.178:22280/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<!--============== 配置私服End =============== -->
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.axis2.wso2</groupId>
@@ -47,11 +78,8 @@
 			<artifactId>org.wso2.carbon.core</artifactId>
 			<version>${wso2.carbon.version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.wso2.carbon</groupId>
-			<artifactId>org.wso2.carbon.admin.mgt</artifactId>
-			<version>${wso2.carbon.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.wso2.carbon</groupId> <artifactId>org.wso2.carbon.admin.mgt</artifactId> 
+			<version>${wso2.carbon.version}</version> </dependency> -->
 		<dependency>
 			<groupId>org.wso2.carbon</groupId>
 			<artifactId>org.wso2.carbon.ui</artifactId>
@@ -107,36 +135,6 @@
 			<version>1.6.1.wso2v5</version> </dependency> -->
 
 	</dependencies>
-
-	<repositories>
-	<repository>
-			<id>nexus</id>
-			<name>Team Nexus Repository</name>
-			<url>http://127.0.0.1:9990/nexus/content/groups/public</url>
-			<!-- <url>http://58.246.138.178:22280/nexus/content/groups/public</url> -->
-		</repository>
-	  <repository>
-            <id>wso2.releases</id>
-            <name>WSO2 internal Repository</name>
-            <url>http://maven.wso2.org/nexus/content/repositories/releases/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>daily</updatePolicy>
-                <checksumPolicy>ignore</checksumPolicy>
-            </releases>
-        </repository>
-		<repository>
-			<id>wso2-nexus</id>
-			<name>WSO2 internal Repository</name>
-			<url>http://maven.wso2.org/nexus/content/groups/wso2-public/</url>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>daily</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</releases>
-		</repository>
-		
-	</repositories>
 
 	<build>
 		<plugins>
