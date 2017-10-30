@@ -12,24 +12,13 @@ import org.wso2.carbon.service.mgt.stub.types.carbon.ServiceMetaDataWrapper;
 import org.wso2.carbon.utils.CarbonUtils;
 //import org.wso2.carbon.admin.service.utils.AuthenticateStub;
 
+import java.io.File;
 import java.rmi.RemoteException;
 
 public class ProxyAdminInvoker {
 
-	static String backEndUrl = "https://localhost:9443/services/";
-	static String userName = "admin";
-	static String password = "admin";
-
-	private static void setProperties() {
-		// Set client trust store
-		System.setProperty("javax.net.ssl.trustStore",
-				"G:/wso2esb-5.0.1-SNAPSHOT/repository/resources/security/client-truststore.jks");
-		System.setProperty("javax.net.ssl.trustStorePassword", "wso2carbon");
-		System.setProperty("javax.net.ssl.trustStoreType", "JKS");
-	}
-
-	public static void main(String[] args) throws Exception, RemoteException, LoginAuthenticationExceptionException, LogoutAuthenticationExceptionException {
-
+	public static void main(String[] args) throws Exception, RemoteException, LoginAuthenticationExceptionException, LogoutAuthenticationExceptionException, java.lang.Exception {
+				
 		//listServicesEx();
 		listServices();
 	}
@@ -42,13 +31,13 @@ public class ProxyAdminInvoker {
 			String serviceEndPoint = "http://server.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer";
 			// Proxy Admin service's endpoing URL
 			// 特别注意：这里的地址是管理端服务地址和端口，并不是listAdminServices出来的endpoint
-			String endPoint = backEndUrl + "ProxyServiceAdmin";
+			String endPoint = GlobalConf.BackEndUrl + "ProxyServiceAdmin";
 
-			setProperties();
+			GlobalConf.setProperties();
 
 			ProxyServiceAdminStub proxyServiceAdminStub = new ProxyServiceAdminStub(endPoint);
 
-			CarbonUtils.setBasicAccessSecurityHeaders(userName, password, proxyServiceAdminStub._getServiceClient());
+			CarbonUtils.setBasicAccessSecurityHeaders(GlobalConf.UserName, GlobalConf.Password, proxyServiceAdminStub._getServiceClient());
 
 			// Set proxy configuration data
 			String[] transport = { "http", "https" };
@@ -80,16 +69,16 @@ public class ProxyAdminInvoker {
 
 	public static void listServices() {
 
-		String endPoint = backEndUrl + "ServiceAdmin";
-
-		setProperties();
+		String endPoint = GlobalConf.BackEndUrl + "ServiceAdmin";
+	
+		GlobalConf.setProperties();
 
 		try {
+			
 			ServiceAdminStub serviceAdminStub = new ServiceAdminStub(endPoint);
 			ServiceClient serviceClient = serviceAdminStub._getServiceClient();
 
-			serviceClient = serviceAdminStub._getServiceClient();
-			CarbonUtils.setBasicAccessSecurityHeaders(userName, password, serviceClient);
+			CarbonUtils.setBasicAccessSecurityHeaders(GlobalConf.UserName, GlobalConf.Password, serviceClient);
 
 			// ServiceGroupMetaData groupMetadata =
 			// serviceAdminStub.listServiceGroup("World_Street_Map_Proxy"); //
@@ -114,11 +103,11 @@ public class ProxyAdminInvoker {
 	public static void listServicesEx()
 			throws RemoteException, LoginAuthenticationExceptionException, LogoutAuthenticationExceptionException {
 
-		setProperties();
-
-		LoginAdminServiceClient login = new LoginAdminServiceClient(backEndUrl);
+		GlobalConf.setProperties();
+		
+		LoginAdminServiceClient login = new LoginAdminServiceClient(GlobalConf.BackEndUrl);
 		String session = login.authenticate("admin", "admin");
-		ServiceAdminClient serviceAdminClient = new ServiceAdminClient(backEndUrl, session);
+		ServiceAdminClient serviceAdminClient = new ServiceAdminClient(GlobalConf.BackEndUrl, session);
 		ServiceMetaDataWrapper serviceList = serviceAdminClient.listServices();
 		System.out.println("Service Names:");
 		for (ServiceMetaData serviceData : serviceList.getServices()) {

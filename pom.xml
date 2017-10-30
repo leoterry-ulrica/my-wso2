@@ -127,6 +127,11 @@
 			<version>4.6.6</version>
 		</dependency>
 		<dependency>
+		  <groupId>org.wso2.carbon.mediation</groupId>
+		  <artifactId>org.wso2.carbon.rest.api.stub</artifactId>
+		  <version>4.6.6</version>
+		</dependency>
+		<dependency>
 			<groupId>org.wso2.carbon</groupId>
 			<artifactId>org.wso2.carbon.service.mgt.stub</artifactId>
 			<version>4.7.0</version>
@@ -137,6 +142,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -198,7 +204,7 @@
 					<!-- 显式指定编码，解决war包的中文乱码问题 -->
 					<encoding>${project.build.sourceEncoding}</encoding>
 					<!-- 设置输出参数，war的名字就是项目的名字（没有版本号）；如果不设置，默认打包到target的名字是带有版本号的 -->
-					<outputDirectory>G:\Tomcat 7.0\webapps</outputDirectory>
+					<!-- <outputDirectory>G:\Tomcat 7.0\webapps</outputDirectory> -->
 				</configuration>
 			</plugin>
 		</plugins>

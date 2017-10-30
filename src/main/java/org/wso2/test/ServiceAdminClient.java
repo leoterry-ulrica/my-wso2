@@ -1,17 +1,11 @@
 package org.wso2.test;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.axis2.AxisFault;
 import org.apache.axis2.client.Options;
 import org.apache.axis2.client.ServiceClient;
 import org.wso2.carbon.service.mgt.stub.ServiceAdminStub;
 import org.wso2.carbon.service.mgt.stub.types.carbon.ServiceMetaDataWrapper;
-import org.wso2.carbon.user.mgt.stub.UserAdminStub;
-import org.wso2.carbon.user.mgt.stub.UserAdminUserAdminException;
-import org.wso2.carbon.user.mgt.stub.types.carbon.UIPermissionNode;
 
 public class ServiceAdminClient {
 
