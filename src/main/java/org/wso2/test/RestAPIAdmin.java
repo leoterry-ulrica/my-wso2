@@ -1,10 +1,6 @@
 package org.wso2.test;
 
-import java.rmi.RemoteException;
-
-import org.apache.axis2.AxisFault;
 import org.apache.axis2.client.ServiceClient;
-import org.wso2.carbon.rest.api.stub.RestApiAdminAPIException;
 import org.wso2.carbon.rest.api.stub.RestApiAdminStub;
 import org.wso2.carbon.rest.api.stub.types.carbon.APIData;
 import org.wso2.carbon.rest.api.stub.types.carbon.ResourceData;

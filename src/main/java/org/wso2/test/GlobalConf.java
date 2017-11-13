@@ -5,6 +5,7 @@ import java.io.File;
 public class GlobalConf {
 
 	public static String BackEndUrl = "https://192.168.1.166:9443/services/";
+	public static String AnalyticsEndUrl = "https://192.168.1.166:9445/services/";
 	public static String UserName = "admin";
 	public static String Password = "admin";
 	
