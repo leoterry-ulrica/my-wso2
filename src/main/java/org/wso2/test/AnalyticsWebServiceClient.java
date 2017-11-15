@@ -70,7 +70,7 @@ public class AnalyticsWebServiceClient {
 		
 		Assert.assertNotNull(componentType);
 		StringBuilder buf = new StringBuilder();
-        
+
 		buf.append(" componentType: \"" + componentType + "\"");
 		
 		if(!StringUtils.isEmpty(componentName)) {
