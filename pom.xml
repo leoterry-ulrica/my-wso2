@@ -223,7 +223,7 @@
 					<warSourceDirectory>src/main/webapp</warSourceDirectory>
 					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 					<!-- 显式指定编码，解决war包的中文乱码问题 -->
-					<encoding>${project.build.sourceEncoding}</encoding>
+					<!--<encoding>${project.build.sourceEncoding}</encoding>-->
 					<!-- 设置输出参数，war的名字就是项目的名字（没有版本号）；如果不设置，默认打包到target的名字是带有版本号的 -->
 					<!-- <outputDirectory>G:\Tomcat 7.0\webapps</outputDirectory> -->
 				</configuration>
@@ -258,7 +258,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<!--<ignore></ignore>-->
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
